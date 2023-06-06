@@ -26,7 +26,7 @@ const findBrandById = async (req, res) => {
 const findBrandByName = async (req, res) => {
     try {
         const { brandName } = req.params
-        const brand = await Brand.find({name: brandName})
+        const brand = await Brand.find({brand: brandName})
         if(!brand) throw Error ('Brand not found')
         res.status(200).json(brand)
     } catch (e) {
@@ -49,7 +49,7 @@ const createBrand = async (req, res) => {
 
 const updateBrand = async (req, res) => {
     try {
-        const brand = await Brands.findByIdAndUpdate(req.query.id, {[req.query.whatToUpdate]: req.query.update})
+        const brand = await Brand.findByIdAndUpdate(req.query.id, {[req.query.whatToUpdate]: req.query.update})
         if(!brand) throw Error('Brand not updated')
         res.status(201).json(brand)
     } catch (e) {
