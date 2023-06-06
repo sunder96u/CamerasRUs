@@ -15,8 +15,8 @@ const modelSchema = new Schema({
         required: true
       },
       brandName: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'Brand'
       }
 })
 

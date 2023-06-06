@@ -17,6 +17,10 @@ const cartSchema = new Schema({
       subtotal: {
         type: Number,
         required: true
+      },
+      productName: {
+        type: Schema.Types.ObjectId,
+        ref: "Model"
       }
 })
 
