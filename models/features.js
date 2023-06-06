@@ -25,6 +25,10 @@ const featureSchema = new Schema({
       connectivity: {
         type: String,
         required: true
+      },
+      modelName: {
+        type: Schema.Types.ObjectId,
+        ref: "Model"
       }
 })
 
