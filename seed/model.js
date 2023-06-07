@@ -20,7 +20,6 @@ const main = async () => {
         brandName: canon._id,
         model:'EOS 5D Mark IV',
         price: 2499.00,           
-        model_id: canon._id
         },
         {
         image:"https://s7d1.scene7.com/is/image/canon/3829C019_primary?fmt=webp-alpha&wid=800",

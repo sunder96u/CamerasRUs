@@ -4,15 +4,15 @@ const { Feature,Model } = require('../models')
 db.on('error', console.error.bind(console,'error:'))
 
 const main = async () => {
-    const canonOne = await Model.findById("6480a9c25e8440be7c42865b")
-    const canonTwo = await Model.findById("6480a9c25e8440be7c42865c")
-    const canonThree = await Model.findById("6480a9c25e8440be7c42865d")
-    const nikonOne = await Model.findById("6480a9c25e8440be7c42865e")
-    const nikonTwo = await Model.findById("6480a9c25e8440be7c42865f")
-    const nikonThree = await Model.findById("6480a9c25e8440be7c428660")
-    const sonyOne = await Model.findById("6480a9c25e8440be7c428661")
-    const sonyTwo = await Model.findById("6480a9c25e8440be7c428662")
-    const sonyThree = await Model.findById("6480a9c25e8440be7c428663")
+    const canonOne = await Model.findById('6480c8795176d9d581e9418e')
+    const canonTwo = await Model.findById("6480c8795176d9d581e9418f")
+    const canonThree = await Model.findById("6480c8795176d9d581e94190")
+    const nikonOne = await Model.findById("6480c8795176d9d581e94191")
+    const nikonTwo = await Model.findById("6480c8795176d9d581e94192")
+    const nikonThree = await Model.findById("6480c8795176d9d581e94193")
+    const sonyOne = await Model.findById("6480c8795176d9d581e94194")
+    const sonyTwo = await Model.findById("6480c8795176d9d581e94195")
+    const sonyThree = await Model.findById("6480c8795176d9d581e94196")
 
 
     const feature = [
@@ -22,7 +22,7 @@ const main = async () => {
         dimensions: 'Approx. 5.16 x 4.04 x 3.00 in. (131.0 x 102.6 x 76.2mm)',
         weight: 'Approx. 16.61 oz. / 471g (body only)',
         shutterSpeed: '1/4000 to 30 sec., bulb',
-        Connectivity: 'Wi-Fi',         
+        connectivity: 'Wi-Fi',         
         modelName: canonOne._id
         },
         {
@@ -102,7 +102,6 @@ const main = async () => {
 
   await Feature.insertMany(feature)
   console.log('Created feature')
-console.log(canonOne)
 }
 const run = async () => {
   await main()

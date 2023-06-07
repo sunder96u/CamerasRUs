@@ -23,17 +23,18 @@ const findModelById = async (req, res) => {
     }
 }
 
-const findModelByModel = async (req, res) => {
-    try {
-        const { modelName } = req.params
-        const model = await Model.find({ brand: modelName})
-        if(!feature) throw Error ("Model not found")
-        res.status(200).json(model)
-    } catch (e) {
-        console.log(e)
-        res.status(500).send('Model not found')
-    }
-}
+// const findModelByModel = async (req, res) => {
+//     console.log(req.params)
+//     try {
+//         const modelName = req.params.model
+//         const model = await Model.find({ model: `${modelName}`})
+//         if(!feature) throw Error ("Model not found")
+//         res.status(200).json(model)
+//     } catch (e) {
+//         console.log(e)
+//         res.status(500).send('Model not found')
+//     }
+// }
 
 const createModel = async (req, res) => {
     try {
@@ -73,7 +74,7 @@ const deleteModel = async (req, res) => {
 module.exports = {
     findModels,
     findModelById,
-    findModelByModel,
+     // findModelByModel, => not functioning yet
     createModel,
     updateModel,
     deleteModel
