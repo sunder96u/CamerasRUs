@@ -6,8 +6,8 @@ const cardContainer = document.getElementById('brandCardContainer')
 const featuresCardContainer = document.getElementById('featuresCardContainer')
 const brandInfo = document.querySelector('.brand-info')
 
-const currentBrand = {}
-const currentModel = {}
+let currentBrand = {}
+let currentModel = {}
 
 
 const brandCards = async (brand) => {
@@ -107,10 +107,10 @@ const brandCards = async (brand) => {
     
 // Nikon 
 nikon.addEventListener('click', async () => {
-      brandNikon = await axios.get('http://localhost:3001/api/nikon')
+      brandNikon = await axios.get('http://localhost:3001/api/brands/name/nikon')
       currentBrand = brandNikon
       
-      modelNikon = await axios.get('http://localhost:3001/api/modelNikon')
+      modelNikon = await axios.get(`http://localhost:3001/api/models/${currentBrand.data.id}`)
       currentModel = modelNikon
 
       brandCards()
