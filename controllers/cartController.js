@@ -52,7 +52,10 @@ const changeQntPlus = async (req, res) => {
         const { id } = req.params
         const item = new Cart.findById(id)
         const newQnt = item.qantity += 1
-        item.subtotal = item.subtotal * newQnt
+        const newSubtotal = item.subtotal * newQnt
+        const updatedItem = await Cart.findByIdAndUpdate(id, {[subtotal]: newSubtotal })
+        updatedItem = await Cart.findByIdAndUpdate(id, {[quantity]: newQnt})
+        res.status(201).json(updatedItem)
     } catch (e) {
         console.log(e)
         res.status(500).send('Item quantity not changed')
@@ -66,6 +69,19 @@ const changeQntMinus = async (req, res) => {
         try {
             const { id } = req.params
             const item = new Cart.findById(id)
+            const newQnt = item.qantity -= 1
+            const newSubtotal = ''
+            const updatedItem = ''
+            if (newQnt <= 0) {
+                newSubtotal = 0
+                updateItem = await Cart.findByIdAndUpdate(id, {[subtotal]: 0})
+                updateItem = await Cart.findByIdAndUpdate(id, {[quantity]: 0})
+            } else {
+                newSubtotal = item.subtotal * newQnt
+                updatedItem = await Cart.findByIdAndUpdate(id, {[subtotal]: newSubtotal })
+                updatedItem = await Cart.findByIdAndUpdate(id, {[quantity]: newQnt})
+            }
+            res.status(201).json(updatedItem)
         } catch (e) {
             console.log(e)
             res.status(500).send('Item quantity not changed')
