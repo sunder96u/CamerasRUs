@@ -55,6 +55,7 @@ nav {
     margin: auto;
 }
 
+
 .logo:hover {
     max-height: 170px;
     max-width: 520px;
@@ -80,3 +81,4 @@ button:hover {
     border-radius: 10px;
     margin: auto;
 }
+
