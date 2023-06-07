@@ -57,7 +57,7 @@ nav {
     background-color: rgb(175, 0, 0);
     color: rgb(252, 252, 252);
     border-color: white;
-    cursor: pointer;
+    cursor: url('images/photo-cursor.png'), pointer;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -87,7 +87,7 @@ nav {
     background-color: rgb(175, 0, 0);
     color: rgb(252, 252, 252);
     border-color: white;
-    cursor: pointer;
+    cursor: url('images/photo-cursor.png'), pointer;
     /* box-shadow: ; */
 }
 
@@ -102,20 +102,17 @@ nav {
 }
 
 .logo-button {
-    /* max-height: 150px;
-    max-width: 500px; */
     box-shadow: 8x;
     border: solid rgb(98, 98, 98) 4px;
     border-radius: 10px;
-    padding: 50px 200px;
-    transition: max-height ease-out 1s;
-    transition: max-width ease-out 1s;
+    padding: 60px 220px;
 }
 
 .logo-button:hover {
-    /* max-height: 180px;
-    max-width: 530px; */
     border-color: rgba(255, 255, 255, 0.804);
+    padding: 80px 280px;
+    transition: padding ease-out 500ms;
+    cursor: url('images/photo-cursor.png'), pointer;
 }
 
 #canon-button {
