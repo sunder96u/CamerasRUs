@@ -23,6 +23,18 @@ const findModelById = async (req, res) => {
     }
 }
 
+const findModelByBrandId = async (req, res) => {
+    try {
+        const { id } = req.params
+        const model = await Model.find({brandName: id})
+        if(!model) throw Error ('Model not found')
+        res.status(200).json(model)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Models not found')
+    }
+}
+
 // const findModelByModel = async (req, res) => {
 //     console.log(req.params)
 //     try {
@@ -74,6 +86,7 @@ const deleteModel = async (req, res) => {
 module.exports = {
     findModels,
     findModelById,
+    findModelByBrandId,
      // findModelByModel, => not functioning yet
     createModel,
     updateModel,
