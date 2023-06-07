@@ -4,15 +4,17 @@ const { Feature,Model } = require('../models')
 db.on('error', console.error.bind(console,'error:'))
 
 const main = async () => {
-    const canonOne = await Model.findById("6480cc29a4e16cb822051e70")
-    const canonTwo = await Model.findById("6480cc29a4e16cb822051e71")
-    const canonThree = await Model.findById("6480cc29a4e16cb822051e72")
-    const nikonOne = await Model.findById("6480cc29a4e16cb822051e73")
-    const nikonTwo = await Model.findById("6480cc29a4e16cb822051e74")
-    const nikonThree = await Model.findById("6480cc29a4e16cb822051e75")
-    const sonyOne = await Model.findById("6480cc29a4e16cb822051e76")
-    const sonyTwo = await Model.findById("6480cc29a4e16cb822051e77")
-    const sonyThree = await Model.findById("6480cc29a4e16cb822051e78")
+
+    const canonOne = await Model.findById('6480c8795176d9d581e9418e')
+    const canonTwo = await Model.findById("6480c8795176d9d581e9418f")
+    const canonThree = await Model.findById("6480c8795176d9d581e94190")
+    const nikonOne = await Model.findById("6480c8795176d9d581e94191")
+    const nikonTwo = await Model.findById("6480c8795176d9d581e94192")
+    const nikonThree = await Model.findById("6480c8795176d9d581e94193")
+    const sonyOne = await Model.findById("6480c8795176d9d581e94194")
+    const sonyTwo = await Model.findById("6480c8795176d9d581e94195")
+    const sonyThree = await Model.findById("6480c8795176d9d581e94196")
+
 
 
     const feature = [
@@ -102,7 +104,6 @@ const main = async () => {
 
   await Feature.insertMany(feature)
   console.log('Created feature')
-console.log(canonOne)
 }
 const run = async () => {
   await main()

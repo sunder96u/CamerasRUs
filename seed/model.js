@@ -19,7 +19,8 @@ const main = async () => {
         image:"https://s7d1.scene7.com/is/image/canon/1483C002_eos-5d-mark-iv_1NEW?fmt=webp-alpha&wid=800",
         brandName: canon._id,
         model:'EOS 5D Mark IV',
-        price: 2499.00
+        price: 2499.00,           
+
         },
         {
         image:"https://s7d1.scene7.com/is/image/canon/3829C019_primary?fmt=webp-alpha&wid=800",

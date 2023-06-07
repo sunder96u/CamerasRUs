@@ -23,17 +23,17 @@ const findFeaturesById = async (req, res) => {
     }
 }
 
-const findFeaturesByBrand = async (req, res) => {
-    try {
-        const { modelName } = req.params
-        const feature = await Feature.find({modelName: modelName})
-        if(!feature) throw Error ('Feature not found')
-        res.status(200).json(feature)
-    } catch (e) {
-        console.log(e)
-        res.status(500).send('Feature not Found')
-    }
-}
+// const findFeaturesByBrand = async (req, res) => {
+//     try {
+//         const { modelName } = req.params
+//         const feature = await Feature.find({modelName: modelName})
+//         if(!feature) throw Error ('Feature not found')
+//         res.status(200).json(feature)
+//     } catch (e) {
+//         console.log(e)
+//         res.status(500).send('Feature not Found')
+//     }
+// }
 
 const createFeatures = async (req, res) => {
     try {
@@ -60,6 +60,7 @@ const updateFeature = async (req, res) => {
 
 const deleteFeature = async (req, res) => {
     try {
+        console.log(req.params)
         const { id } = req.params
         const feature = await Feature.findByIdAndDelete(id)
         if(!feature) throw Error('Feature not deleted')
@@ -73,7 +74,7 @@ const deleteFeature = async (req, res) => {
 module.exports = {
     findFeatures,
     findFeaturesById,
-    findFeaturesByBrand,
+    // findFeaturesByBrand, => not functioning yet
     createFeatures,
     updateFeature,
     deleteFeature
