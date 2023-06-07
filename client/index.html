@@ -6,47 +6,43 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="script.js" defer></script>
       <link rel="stylesheet" href="style.css">
+      <link rel="icon" href="images/cameraicon.png">
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <title>Cameras R Us</title>
 </head>
 <body>
       
       <nav>
-            <div class="mainTitle"> <img class="title-logo" src="images/cameralogo.jpeg" alt=""> <img class="title" src="images/CamerasRUstitle.png" alt=""> </div>
+            <div class="mainTitle"> 
+                  <img class="title-logo" src="images/cameralogo.jpeg" alt=""> 
+                  <img class="title-image" src="images/CamerasRUstitle.png" alt=""> 
+            </div>
 
-            <div class="search-bar">
+            <div class="searchBar-container">
                   <input id="search-input" type="search">
                   <button id="search-button">Search</button>
-            </div>      
+            </div>
+
+            <div class="cartButton-container">
                   <button id="cart-button">Cart</button>
+            </div>
       </nav>
 
+
+
       <div class="logo-container"> 
-            <img class="logo" id="canon-logo"src="images/Canon-Logo.jpg" alt="Canon">
-            <img class="logo" id="sony-logo"src="images/Sony-Logo.jpg" alt="Sony">
-            <img class="logo" id="nikon-logo"src="images/Nikon-Logo.jpg" alt="Nikon">
+            <button class="logo-button" id="canon-button"> </button>
+            <button class="logo-button" id="sony-button"> </button>
+            <button class="logo-button" id="nikon-button"> </button>
       </div>
 
-      
 
+      
       <div class="brand-info">
-            <table>
-            <thead>
-                  <tr id="headers"></tr>
-                        
-            </thead>
-            <tbody>
-                  <tr id="row1"></tr>
-                        
-                  
-                  <tr id="row2"></tr>
-                           
-                  
-                  <tr id="row3"></tr>
-                        
-            </tbody>
-            </table>
+            <h1>Brand and model info</h1>
       </div>
-      
 
+      
 </body>
+
 </html>
