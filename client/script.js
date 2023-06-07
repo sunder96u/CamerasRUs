@@ -1,9 +1,10 @@
 
-const nikon = document.getElementById('nikon')
-const sony = document.getElementById('sony')
-const canon = document.getElementById('canon')
+const nikon = document.getElementById('nikon-button')
+const sony = document.getElementById('sony-button')
+const canon = document.getElementById('canon-button')
 const cardContainer = document.getElementById('brandCardContainer')
 const featuresCardContainer = document.getElementById('featuresCardContainer')
+const brandInfo = document.querySelector('.brand-info')
 
 const currentBrand = {}
 const currentModel = {}
@@ -11,86 +12,96 @@ const currentModel = {}
 
 const brandCards = async (brand) => {
       brandCardContainer.innerHTML = ''
+      // Card
+      const card = document.createElement('div')
+      card.classList.add('brandContainer')
+
       brand.forEach(product => {
             
-            // Card
-            const card = document.createElement('div')
             // Image 
             const imageElement = document.createElement('img')
-            imageElement.src = `${currentBrand.data.brandLogo}`
+            imageElement.src = ``
             card.appendChild(imageElement)
             // Brand Name
             const brandNameElement = document.createElement('h3')
             brandNameElement.textContent = `${currentBrand.data.brand}`
             card.appendChild(brandNameElement)
+            // Brand Info
+            brandInfo.appendChild(card)
       })
 
       for(let i = 0; i < currentModel.data.length; i++) {
             // Model
-            const modelElement = document.createElement('p')
-            modelElement.textContent = `Model: ${currentModel.data[i].model}`
+            const modelElement = document.createTextNode(`Model: ${currentModel.data[i].model}`)
             card.appendChild(modelElement)
             // Price    
-            const priceElement = document.createElement('p')
-            priceElement.textContent = `Price: $${currentModel.data[i].model}`
+            const priceElement = document.createTextNode(`Price: $${currentModel.data[i].model}`)
             card.appendChild(priceElement)
             // Add To Cart Button
             const addToCartButton = document.createElement('button')
             addToCartButton.textContent = 'Add to Cart'
             // Add To Cart Functionality
             addToCartButton.addEventListener('click', async() => {
-                  const item = await axios.put(`http://localhost:3001/api/cart/${currentMode.data[i].id}`)
+                  const item = await axios.put(`http://localhost:3001/api/cart/${currentModel.data[i].id}`)
             })
       
             card.appendChild(addToCartButton)
             // Add card to the desired place
+
+            // View More Button
+            const viewMoreButton = document.createElement('button')
+            viewMoreButton.textContent = 'View More'
+            viewMoreButton.id = 'view-more'
+            viewMoreButton.addEventListener('click', () => {
+                  // Handle button click event
+            })
       }
 }
 
 
-const featuresCards = async (feature) => {
+// const featuresCards = async (feature) => {
 
-      featuresCardContainer.innerHTML = ''
+//       featuresCardContainer.innerHTML = ''
 
-      featuresResponse = await axios.get('http://localhost:3001/api/features/:id')
+//       featuresResponse = await axios.get('http://localhost:3001/api/features/:id')
 
-      feature.forEach(item => {
-        // Card
-        const card = document.createElement('div')
+//       feature.forEach(item => {
+//         // Card
+//         const card = document.createElement('div')
     
-        // Image 
-        const imageElement = document.createElement('img')
-        imageElement.src = `${currentModel.data.image}`
-        card.appendChild(imageElement)
+//         // Image 
+//         const imageElement = document.createElement('img')
+//         imageElement.src = `${currentModel.data.image}`
+//         card.appendChild(imageElement)
     
-        // Brand Name
-        const brandNameElement = document.createElement('h3')
-        brandNameElement.textContent = `${currentModel.data.brandName}`
-        card.appendChild(brandNameElement)
+//         // Brand Name
+//         const brandNameElement = document.createElement('h3')
+//         brandNameElement.textContent = `${currentModel.data.brandName}`
+//         card.appendChild(brandNameElement)
     
-        // Model
-        const modelElement = document.createElement('p')
-        modelElement.textContent = `Model: ${currentModel.data.model}`
-        card.appendChild(modelElement)
+//         // Model
+//         const modelElement = document.createElement('p')
+//         modelElement.textContent = `Model: ${currentModel.data.model}`
+//         card.appendChild(modelElement)
     
-        // Price
-        const priceElement = document.createElement('p')
-        priceElement.textContent = `Price: ${currentModel.data.price}`
-        card.appendChild(priceElement)
+//         // Price
+//         const priceElement = document.createElement('p')
+//         priceElement.textContent = `Price: ${currentModel.data.price}`
+//         card.appendChild(priceElement)
     
-        // Features
-        const featuresElement = document.createElement('ul')
-        item.features.forEach(feature => {
-          const featureItem = document.createElement('li')
-          featureItem.textContent = `${featuresResponse.data}`
-          featuresElement.appendChild(featureItem)
-        })
-        card.appendChild(featuresElement)
+//         // Features
+//         const featuresElement = document.createElement('ul')
+//         item.features.forEach(feature => {
+//           const featureItem = document.createElement('li')
+//           featureItem.textContent = `${featuresResponse.data}`
+//           featuresElement.appendChild(featureItem)
+//         })
+//         card.appendChild(featuresElement)
     
-        // Append the card to the desired container
-        document.body.appendChild(card) 
-      })
-}
+//         // Append the card to the desired container
+//         document.body.appendChild(card) 
+//       })
+// }
     
 
     
@@ -101,6 +112,9 @@ nikon.addEventListener('click', async () => {
       
       modelNikon = await axios.get('http://localhost:3001/api/modelNikon')
       currentModel = modelNikon
+
+      brandCards()
+      featuresCards()
 })
 
 // Sony 
@@ -110,6 +124,9 @@ sony.addEventListener('click', async () => {
 
       modelSony = await axios.get('http://localhost:3001/api/modelSony')
       currentModel = modelSony
+
+      brandCards()
+      featuresCards()
 })
 
 // Canon 
@@ -119,6 +136,9 @@ canon.addEventListener('click', async () => {
 
       modelCanon = await axios.get('http://localhost:3001/api/modelCanon')
       currentModel = modelCanon
+
+      brandCards()
+      featuresCards()
 })
 
 
