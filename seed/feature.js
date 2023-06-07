@@ -4,6 +4,7 @@ const { Feature,Model } = require('../models')
 db.on('error', console.error.bind(console,'error:'))
 
 const main = async () => {
+
     const canonOne = await Model.findById('6480c8795176d9d581e9418e')
     const canonTwo = await Model.findById("6480c8795176d9d581e9418f")
     const canonThree = await Model.findById("6480c8795176d9d581e94190")
@@ -13,6 +14,7 @@ const main = async () => {
     const sonyOne = await Model.findById("6480c8795176d9d581e94194")
     const sonyTwo = await Model.findById("6480c8795176d9d581e94195")
     const sonyThree = await Model.findById("6480c8795176d9d581e94196")
+
 
 
     const feature = [
