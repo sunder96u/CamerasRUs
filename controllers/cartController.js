@@ -1,5 +1,16 @@
 const { Cart, Model, Brand } = require('../models')
 
+const findCart = async (req, res) => {
+    try {
+        const cart = await Cart.find()
+        if(!cart) throw Error('Cart not found')
+        res.status(200).json(cart)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Cart not found')
+    }
+}
+
 const addToCart = async (req, res) => {
 //check if exists in cart
     //if exists add quantity
@@ -89,6 +100,7 @@ const changeQntMinus = async (req, res) => {
     }
 
 module.exports = {
+    findCart,
     addToCart,
     removeFromCart,
     changeQntPlus,
