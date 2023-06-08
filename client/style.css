@@ -19,7 +19,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     justify-content: center;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -28,9 +27,18 @@ nav {
     display: flex;
     justify-content: space-between;
     background-image: linear-gradient(to right,rgb(120, 120, 120),rgba(255, 255, 255, 0));
+    background-size: cover;
     opacity: (to right, 40%, 100%);
     padding: 20px;
 }
+
+
+.top-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+} 
 
 
 
@@ -283,18 +291,20 @@ nav {
         align-items: center;
         margin-top: 10px;
     } 
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+    }
     
 }
     
 
 
 
-@media (max-width: 900px) {
-    
-
-   
-
-}
 
 .modelPic {
     height:250px;
