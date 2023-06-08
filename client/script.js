@@ -23,11 +23,18 @@ const brandCards = async (brand) => {
             // Image 
             const imageElement = document.createElement('img')
             imageElement.src = `${currentBrand.data[0].brandLogo}`
-            card.appendChild(imageElement)
+            const imageDiv = document.createElement('div')
+            
             // Brand Name
             const brandNameElement = document.createElement('h3')
-            card.appendChild(brandNameElement)
+            const brandNameDiv = document.createElement('div')
+            
             // Brand Info
+            imageDiv.appendChild(imageElement)
+            imageDiv.classList.add('imageDiv')
+            card.appendChild(imageDiv)
+            brandNameDiv.appendChild(brandNameElement)
+            card.appendChild(brandNameDiv)
             brandInfo.appendChild(card)
       }
 
@@ -35,27 +42,38 @@ const brandCards = async (brand) => {
             const newDiv = document.createElement('div')
             //Image
             const pic = document.createElement('img')
-            pic.classList.add('modelPic')
             pic.src = `${currentModel.data[i].image}`
+            pic.classList.add('modelPic')
+            const picDiv = document.createElement('div')
+
             // Model
             const modelElement = document.createTextNode(`Model: ${currentModel.data[i].model}`)
-            //modelElement.classList.add('modelName')
-            //card.appendChild(modelElement)
+            const modelDiv = document.createElement('div')
+
             // Price    
             const priceElement = document.createTextNode(`Price: $${currentModel.data[i].price}`)
-            //card.appendChild(priceElement)
+            const priceDiv = document.createElement('div')
+            
             // Add To Cart Button
             const addToCartButton = document.createElement('button')
             addToCartButton.textContent = 'Add to Cart'
+            const addToCartDiv = document.createElement('div')
+
             // Add To Cart Functionality
             addToCartButton.addEventListener('click', async() => {
                   const item = await axios.post(`http://localhost:3001/api/cart/${currentModel.data[i]._id}`)
                     
             })
-            newDiv.appendChild(pic)
-            newDiv.appendChild(modelElement)
-            newDiv.appendChild(priceElement)
-            newDiv.appendChild(addToCartButton)
+
+            picDiv.appendChild(pic)
+            modelDiv.appendChild(modelElement)
+            priceDiv.appendChild(priceElement)
+            addToCartDiv.appendChild(addToCartButton)
+
+            newDiv.appendChild(picDiv)
+            newDiv.appendChild(modelDiv)
+            newDiv.appendChild(priceDiv)
+            newDiv.appendChild(addToCartDiv)
             
             // card.appendChild(addToCartButton)
             // Add card to the desired place
