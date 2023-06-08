@@ -202,8 +202,16 @@ nav {
     border: solid rgb(120, 120, 120) 4px;
     border-radius: 10px;
     display: flex;
-    height: 200px;
     margin-top: 50px;
     opacity: 75%;
 }
+
+.modelPic {
+    height:250px;
+}
+
+.modelNamne {
+    font-size: 15rem;
+}
+
 
