@@ -4,13 +4,18 @@
 }
 
 html {
-    background-image: url('images/PageBackground2.jpg');
+    /* background-image: url('images/PageBackground2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    border-top: solid rgb(81, 81, 81) 10px; */
     /* cursor: url('/images/photo-cursor.png'); */
 }
 
 body {
+    background-image: url('images/PageBackground2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-top: solid rgb(81, 81, 81) 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -55,9 +60,10 @@ nav {
 
 /* searchbar */
 .searchBar-container{
+    display: flex;
     background-color: rgb(120, 120, 120);
     align-self: center;
-    padding: 20px;
+    padding: 17px;
     margin-left: 40px;
     background-size: 50px, 100px;
     border: 1px solid white;
@@ -69,11 +75,13 @@ nav {
 #search-input {
     border: 1px black solid;
     border-radius: 5px;
+    padding: 5px;
 }
 
 #search-button {
     border: solid rgb(98, 98, 98) 4px;
     border-radius: 7px;
+    padding: 5px;
 }
 
 #search-button:hover {
@@ -169,7 +177,7 @@ nav {
     justify-content: space-around;
     position: relative;
     margin-top: 100px;
-    background-image: linear-gradient(to bottom, black,rgba(98, 98, 98, 0));
+    background-image: linear-gradient(to bottom, rgb(161, 161, 161),rgba(98, 98, 98, 0));
     border-top: solid rgb(190, 190, 190) 3px;
     
 }
@@ -179,6 +187,7 @@ nav {
     border: solid rgb(98, 98, 98) 4px;
     border-radius: 10px;
     padding: 60px 220px;
+    margin: 20px;
     box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2), 0 12px 40px 0 rgba(0,0,0,0.29);
     transition: padding ease-out 500ms;
 
@@ -187,8 +196,9 @@ nav {
 .logo-button:hover {
     border-color: rgba(255, 255, 255, 0.804);
     padding: 80px 280px;
-    transition: padding ease-out 500ms;
     cursor: url('images/photo-cursor.png'), pointer;
+    transition: padding ease-out 500ms;
+    
 }
 
 #canon-button {
@@ -212,31 +222,43 @@ nav {
 
 /* brand stuff */
 .brand-info {
-    background-image: linear-gradient(to top, white, rgb(56, 56, 56));
-    border: solid rgb(120, 120, 120) 4px;
+    background-image: linear-gradient(to top, white, rgb(98, 98, 98));
+    border: solid rgb(20, 20, 20) 4px;
     border-radius: 10px;
     display: flex;
     margin-top: 50px;
     opacity: 75%;
+    color: rgb(70, 70, 70);
 }
 
 
+
+/* mobile page */
 @media (max-width: 900px) {
     .title-logo {
-        height: 30px;
+        height: 40px;
+        border-width: 2px;
     }
     .title-image {
         height: 30px;
     }
 
     .logo-container {
-        flex-direction: column;
+        display: grid;
+        /* grid-template-columns: 3fr; */
+        grid-gap: 20px;
+        /* justify-content: center; */
+        /* align-items: center; */
     }
+
+    /* .logo-button {
+        padding: 30px 110px;
+        background-position: inherit;
+    } */
 
     .searchBar-container,
     .cartButton-container {
-    margin-top: 20px;
-    align-self: center;
+     align-content: flex-end;
   }
 
 }
