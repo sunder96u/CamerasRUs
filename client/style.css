@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     background-image: url('images/PageBackground2.jpg');
     background-size: cover;
@@ -25,8 +30,15 @@ nav {
 
 
 /* title */
+.mainTitle {
+    display: flex;
+    align-items: center;
+}
+
 .title-image {
     opacity: 80%;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .title-logo {
@@ -34,6 +46,7 @@ nav {
     max-width: 150px;
     opacity: 80%;
     border: 5px solid rgb(0, 0, 0);
+    
    
 }
 
@@ -45,11 +58,12 @@ nav {
     background-color: rgb(120, 120, 120);
     align-self: center;
     padding: 20px;
-    margin-left: 50px;
+    margin-left: 40px;
     background-size: 50px, 100px;
     border: 1px solid white;
     border-radius: 10px;
     opacity: 80%;
+    
 }
 
 #search-input {
@@ -207,3 +221,22 @@ nav {
     opacity: 75%;
 }
 
+@media (max-width: 900px) {
+    .title-logo {
+        height: 30px;
+    }
+    .title-image {
+        height: 30px;
+    }
+
+    .logo-container {
+        flex-direction: column;
+    }
+
+    .searchBar-container,
+    .cartButton-container {
+    margin-top: 20px;
+    align-self: center;
+  }
+
+}
