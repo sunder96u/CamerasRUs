@@ -23,6 +23,19 @@ const findFeaturesById = async (req, res) => {
     }
 }
 
+const findFeaturesByBrandId = async (req, res) => {
+    try {
+        console.log(req.params)
+        const { id } = req.params
+        const feature = await Feature.findOne({modelName: id})
+        if(!feature) throw Error ('Feature not found')
+        res.status(200).json(feature)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Could not find features')
+    }
+}
+
 // const findFeaturesByBrand = async (req, res) => {
 //     try {
 //         const { modelName } = req.params
@@ -74,6 +87,7 @@ const deleteFeature = async (req, res) => {
 module.exports = {
     findFeatures,
     findFeaturesById,
+    findFeaturesByBrandId,
     // findFeaturesByBrand, => not functioning yet
     createFeatures,
     updateFeature,
