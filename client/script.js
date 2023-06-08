@@ -198,8 +198,8 @@ const cartInformation = async () => {
 
       let total = ""
       let cartDiv = document.querySelector('.modal-footer')
-      let newDiv = document.querySelector('.modal-content')
-      newDiv.InnerHTML = ""
+      let newDiv = document.querySelector('.modal-information')
+      newDiv.innerHTML = ""
 
       for (let i = 0; i < myCart.data.length; i++) {
             
@@ -223,7 +223,8 @@ const cartInformation = async () => {
             // // Add To Cart Functionality
             removeFromCartButton.addEventListener('click', async() => {
                   const item = await axios.delete(`http://localhost:3001/api/cart/${myCart.data[i]._id}`)
-                  console.log(myCart.data[i]._id)                   
+                  console.log(myCart.data[i]._id)
+                  modal.style.display = 'none'                   
             })
 
             imageDiv.appendChild(imageElement)
