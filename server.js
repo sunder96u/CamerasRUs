@@ -1,6 +1,5 @@
 const express = require('express')
 const db = require('./db')
-const cors = require('cors')
 const PORT = process.env.PORT || 3001 
 const AppRouter = require('./routes/appRouter')
 const landingPage = require('./controllers/brandController')
@@ -10,8 +9,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use(cors())
-app.use(express.json())
 app.get('/', landingPage.findBrands)
 app.use('/api', AppRouter)
 
