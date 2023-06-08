@@ -12,6 +12,7 @@ const closeSpan = document.getElementsByClassName('close')[0]
 
 let currentBrand = {}
 let currentModel = {}
+let featureCurrentModel = {}
 
 
 const brandCards = async (brand) => {
@@ -39,7 +40,7 @@ const brandCards = async (brand) => {
             card.appendChild(imageElement)
             // Brand Name
             const brandNameElement = document.createElement('h3')
-            brandNameElement.textContent = `${currentBrand.data[0].brand}`
+            //brandNameElement.textContent = `${currentBrand.data[0].brand}`
             card.appendChild(brandNameElement)
             // Brand Info
             brandInfo.appendChild(card)
@@ -63,71 +64,108 @@ const brandCards = async (brand) => {
             addToCartButton.textContent = 'Add to Cart'
             // Add To Cart Functionality
             addToCartButton.addEventListener('click', async() => {
-                  const item = await axios.put(`http://localhost:3001/api/cart/${currentModel.data[i].id}`)
-                  
+                  const item = await axios.post(`http://localhost:3001/api/cart/${currentModel.data[i]._id}`)
+                    
             })
             newDiv.appendChild(pic)
             newDiv.appendChild(modelElement)
             newDiv.appendChild(priceElement)
             newDiv.appendChild(addToCartButton)
-            card.appendChild(newDiv)
+            
             // card.appendChild(addToCartButton)
             // Add card to the desired place
 
             // View More Button
             const viewMoreButton = document.createElement('button')
+            newDiv.append(viewMoreButton)
+            card.appendChild(newDiv)
             viewMoreButton.textContent = 'View More'
             viewMoreButton.id = 'view-more'
             viewMoreButton.addEventListener('click', () => {
-                  // Handle button click event
+                  featureCurrentModel = currentModel.data[i]._id
+                  featuresCards()
             })
       }
 }
 
 
-// const featuresCards = async (feature) => {
+const featuresCards = async (feature) => {
+      brandInfo.innerHTML = ""
+      const card = document.createElement('div')
+      card.classList.add('brandContainer')
+      console.log(featureCurrentModel)
+      featuresResponse = await axios.get(`http://localhost:3001/api/features/brand/${featureCurrentModel}`)
+      myCurrentModel = await axios.get(`http://localhost:3001/api/models/${featureCurrentModel}`)
+      console.log(`${myCurrentModel} -> currentModel info`)
+      console.log(featuresResponse)
 
-//       featuresCardContainer.innerHTML = ''
+      const newDiv = document.createElement('div')
+            //Image
+            const pic = document.createElement('img')
+            pic.src = `${myCurrentModel.data.image}`
+            // Model
+            const modelElement = document.createTextNode(`Model: ${featuresResponse.data.connectivity}`)
+            //modelElement.classList.add('modelName')
+            //card.appendChild(modelElement)
+            // Price    
+            // const priceElement = document.createTextNode(`Price: $${currentModel.data[i].price}`)
+            // //card.appendChild(priceElement)
+            // // Add To Cart Button
+            // const addToCartButton = document.createElement('button')
+            // addToCartButton.textContent = 'Add to Cart'
+            // // Add To Cart Functionality
+            // addToCartButton.addEventListener('click', async() => {
+            //       const item = await axios.post(`http://localhost:3001/api/cart/${currentModel.data[i]._id}`)
+                    
+            // })
+            newDiv.appendChild(pic)
+            newDiv.appendChild(modelElement)
+           // newDiv.appendChild(priceElement)
+           // newDiv.appendChild(addToCartButton)
+           card.appendChild(newDiv)
+           brandInfo.appendChild(card)
 
-//       featuresResponse = await axios.get('http://localhost:3001/api/features/:id')
+      // feature.forEach(item => {
+      //   // Card
+      //   const card = document.createElement('div')
+    
+      //   // Image 
+      //   const imageElement = document.createElement('img')
+      //   imageElement.src = `${currentModel.data.image}`
+      //   card.appendChild(imageElement)
+    
+      //   // Brand Name
+      //   const brandNameElement = document.createElement('h3')
+      //   brandNameElement.textContent = `${currentModel.data.brandName}`
+      //   card.appendChild(brandNameElement)
+    
+      //   // Model
+      //   const modelElement = document.createElement('p')
+      //   modelElement.textContent = `Model: ${currentModel.data.model}`
+      //   card.appendChild(modelElement)
+    
+      //   // Price
+      //   const priceElement = document.createElement('p')
+      //   priceElement.textContent = `Price: ${currentModel.data.price}`
+      //   card.appendChild(priceElement)
+    
+      //   // Features
+      //   const featuresElement = document.createElement('ul')
+      //   item.features.forEach(feature => {
+      //     const featureItem = document.createElement('li')
+      //     featureItem.textContent = `${featuresResponse.data}`
+      //     featuresElement.appendChild(featureItem)
+      //   })
+      //   card.appendChild(featuresElement)
+    
+      //   // Append the card to the desired container
+      //   document.body.appendChild(card) 
+      // })
+}
 
-//       feature.forEach(item => {
-//         // Card
-//         const card = document.createElement('div')
-    
-//         // Image 
-//         const imageElement = document.createElement('img')
-//         imageElement.src = `${currentModel.data.image}`
-//         card.appendChild(imageElement)
-    
-//         // Brand Name
-//         const brandNameElement = document.createElement('h3')
-//         brandNameElement.textContent = `${currentModel.data.brandName}`
-//         card.appendChild(brandNameElement)
-    
-//         // Model
-//         const modelElement = document.createElement('p')
-//         modelElement.textContent = `Model: ${currentModel.data.model}`
-//         card.appendChild(modelElement)
-    
-//         // Price
-//         const priceElement = document.createElement('p')
-//         priceElement.textContent = `Price: ${currentModel.data.price}`
-//         card.appendChild(priceElement)
-    
-//         // Features
-//         const featuresElement = document.createElement('ul')
-//         item.features.forEach(feature => {
-//           const featureItem = document.createElement('li')
-//           featureItem.textContent = `${featuresResponse.data}`
-//           featuresElement.appendChild(featureItem)
-//         })
-//         card.appendChild(featuresElement)
-    
-//         // Append the card to the desired container
-//         document.body.appendChild(card) 
-//       })
-// }
+const cartInformation = async () => {
+
+}
     
 
     
@@ -142,32 +180,29 @@ nikon.addEventListener('click', async () => {
       console.log(currentModel)
 
       brandCards()
-      //featuresCards()
 })
 
 // // Sony 
-// sony.addEventListener('click', async () => {
-//       brandSony = await axios.get('http://localhost:3001/sony')
-//       currentBrand = brandSony
+sony.addEventListener('click', async () => {
+      brandSony = await axios.get('http://localhost:3001/api/brands/name/sony')
+      currentBrand = brandSony
 
-//       modelSony = await axios.get('http://localhost:3001/api/modelSony')
-//       currentModel = modelSony
+      modelSony = await axios.get(`http://localhost:3001/api/models/brands/${currentBrand.data[0]._id}`)
+      currentModel = modelSony
 
-//       brandCards()
-//       featuresCards()
-// })
+      brandCards()
+})
 
-// // Canon 
-// canon.addEventListener('click', async () => {
-//       brandCanon = await axios.get('http://localhost:3001/canon')
-//       currentBrand = brandCanon
+// Canon 
+canon.addEventListener('click', async () => {
+      brandCanon = await axios.get('http://localhost:3001/api/brands/name/canon')
+      currentBrand = brandCanon
 
-//       modelCanon = await axios.get('http://localhost:3001/api/modelCanon')
-//       currentModel = modelCanon
+      modelCanon = await axios.get(`http://localhost:3001/api/models/brands/${currentBrand.data[0]._id}`)
+      currentModel = modelCanon
 
-//       brandCards()
-//       featuresCards()
-// })
+      brandCards()
+})
 
 
 
