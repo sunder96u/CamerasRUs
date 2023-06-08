@@ -10,17 +10,7 @@ CamerasRUs is a e-commerce page for three top camera brands: Nikon, Canon, and S
 
 By:
 
-Chris
-    -created folders and files
-    -js dom 
-    -models
-Jenny 
-    -gathered camera info, made table on figma
-    -created seed and planted them
-    -created readme
-Steven 
-    -routes/ controllers 
-Bryan
-    -html
-    -design css 
-    -styling elements from dom 
+Chris created folders and files, js dom, models...
+Jenny gathered camera info, made table on figma, created seed and planted them,created readme...
+Steven made routes/ controllers...
+Bryan created html, design css, and styled elements from dom...
