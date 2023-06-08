@@ -10,46 +10,68 @@ const modal = document.getElementById('cartModal')
 const cartButton = document.getElementById('cart-button')
 const closeSpan = document.getElementsByClassName('close')[0]
 
-const currentBrand = {}
-const currentModel = {}
+let currentBrand = {}
+let currentModel = {}
 
 
 const brandCards = async (brand) => {
-      brandCardContainer.innerHTML = ''
       // Card
       const card = document.createElement('div')
       card.classList.add('brandContainer')
-
-      brand.forEach(product => {
+      brandInfo.innerHTML = ""
+      // brand.forEach(product => {
             
+      //       // Image 
+      //       const imageElement = document.createElement('img')
+      //       imageElement.src = ``
+      //       card.appendChild(imageElement)
+      //       // Brand Name
+      //       const brandNameElement = document.createElement('h3')
+      //       brandNameElement.textContent = `${currentBrand.data.brand}`
+      //       card.appendChild(brandNameElement)
+      //       // Brand Info
+      //       brandInfo.appendChild(card)
+      // })
+      for (let j = 0; j < currentBrand.data.length; j++) {
             // Image 
             const imageElement = document.createElement('img')
-            imageElement.src = ``
+            imageElement.src = `${currentBrand.data[0].brandLogo}`
             card.appendChild(imageElement)
             // Brand Name
             const brandNameElement = document.createElement('h3')
-            brandNameElement.textContent = `${currentBrand.data.brand}`
+            brandNameElement.textContent = `${currentBrand.data[0].brand}`
             card.appendChild(brandNameElement)
             // Brand Info
             brandInfo.appendChild(card)
-      })
+      }
 
       for(let i = 0; i < currentModel.data.length; i++) {
+            const newDiv = document.createElement('div')
+            //Image
+            const pic = document.createElement('img')
+            pic.classList.add('modelPic')
+            pic.src = `${currentModel.data[i].image}`
             // Model
             const modelElement = document.createTextNode(`Model: ${currentModel.data[i].model}`)
-            card.appendChild(modelElement)
+            //modelElement.classList.add('modelName')
+            //card.appendChild(modelElement)
             // Price    
-            const priceElement = document.createTextNode(`Price: $${currentModel.data[i].model}`)
-            card.appendChild(priceElement)
+            const priceElement = document.createTextNode(`Price: $${currentModel.data[i].price}`)
+            //card.appendChild(priceElement)
             // Add To Cart Button
             const addToCartButton = document.createElement('button')
             addToCartButton.textContent = 'Add to Cart'
             // Add To Cart Functionality
             addToCartButton.addEventListener('click', async() => {
                   const item = await axios.put(`http://localhost:3001/api/cart/${currentModel.data[i].id}`)
+                  
             })
-      
-            card.appendChild(addToCartButton)
+            newDiv.appendChild(pic)
+            newDiv.appendChild(modelElement)
+            newDiv.appendChild(priceElement)
+            newDiv.appendChild(addToCartButton)
+            card.appendChild(newDiv)
+            // card.appendChild(addToCartButton)
             // Add card to the desired place
 
             // View More Button
@@ -111,39 +133,41 @@ const brandCards = async (brand) => {
     
 // Nikon 
 nikon.addEventListener('click', async () => {
-      brandNikon = await axios.get('http://localhost:3001/api/nikon')
+      brandNikon = await axios.get('http://localhost:3001/api/brands/name/nikon')
       currentBrand = brandNikon
-      
-      modelNikon = await axios.get('http://localhost:3001/api/modelNikon')
+
+      console.log(currentBrand)
+      modelNikon = await axios.get(`http://localhost:3001/api/models/brands/${currentBrand.data[0]._id}`)
       currentModel = modelNikon
+      console.log(currentModel)
 
       brandCards()
-      featuresCards()
+      //featuresCards()
 })
 
-// Sony 
-sony.addEventListener('click', async () => {
-      brandSony = await axios.get('http://localhost:3001/sony')
-      currentBrand = brandSony
+// // Sony 
+// sony.addEventListener('click', async () => {
+//       brandSony = await axios.get('http://localhost:3001/sony')
+//       currentBrand = brandSony
 
-      modelSony = await axios.get('http://localhost:3001/api/modelSony')
-      currentModel = modelSony
+//       modelSony = await axios.get('http://localhost:3001/api/modelSony')
+//       currentModel = modelSony
 
-      brandCards()
-      featuresCards()
-})
+//       brandCards()
+//       featuresCards()
+// })
 
-// Canon 
-canon.addEventListener('click', async () => {
-      brandCanon = await axios.get('http://localhost:3001/canon')
-      currentBrand = brandCanon
+// // Canon 
+// canon.addEventListener('click', async () => {
+//       brandCanon = await axios.get('http://localhost:3001/canon')
+//       currentBrand = brandCanon
 
-      modelCanon = await axios.get('http://localhost:3001/api/modelCanon')
-      currentModel = modelCanon
+//       modelCanon = await axios.get('http://localhost:3001/api/modelCanon')
+//       currentModel = modelCanon
 
-      brandCards()
-      featuresCards()
-})
+//       brandCards()
+//       featuresCards()
+// })
 
 
 

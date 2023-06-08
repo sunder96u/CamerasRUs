@@ -216,10 +216,10 @@ nav {
     border: solid rgb(120, 120, 120) 4px;
     border-radius: 10px;
     display: flex;
-    height: 200px;
     margin-top: 50px;
     opacity: 75%;
 }
+
 
 @media (max-width: 900px) {
     .title-logo {
@@ -240,3 +240,14 @@ nav {
   }
 
 }
+
+.modelPic {
+    height:250px;
+}
+
+.modelNane {
+    font-size: 15rem;
+}
+
+
+
