@@ -11,6 +11,7 @@ const closeSpan = document.getElementsByClassName('close')[0]
 let currentBrand = {}
 let currentModel = {}
 let featureCurrentModel = {}
+let myCart = {}
 
 
 const brandCards = async (brand) => {
@@ -192,6 +193,57 @@ const featuresCards = async (feature) => {
 
 const cartInformation = async () => {
 
+      myCart = await axios.get("http://localhost:3001/api/cart")
+      console.log(myCart)
+
+      let total = ""
+      let cartDiv = document.querySelector('.modal-footer')
+      let newDiv = document.querySelector('.modal-content')
+      newDiv.InnerHTML = ""
+
+      for (let i = 0; i < myCart.data.length; i++) {
+            
+            let imageDiv = document.createElement('div')
+            let imageElement = document.createElement('img')
+            imageElement.src = `${myCart.data[i].image}`
+            imageElement.classList.add('modelPic')
+            let modelDiv = document.createElement('div')
+            let modelElement = document.createTextNode(`Model: Will make axios call to grab info`)
+            let priceDiv = document.createElement('div')
+            let priceElement = document.createTextNode(`Price: $${myCart.data[i].price}`)
+            let quantityDiv = document.createElement('div')
+            let quantityElement = document.createTextNode(`Quantity: ${myCart.data[i].quantity}`)
+            let subtotalDiv = document.createElement('div')
+            let subtotalElement = document.createTextNode(`Subtotal: $${myCart.data[i].subtotal}`)
+            // add quantity plus minus buttons here
+            // price = parseInt(myCart.data[i].subtotal)
+            // total += price
+            const removeFromCartButton = document.createElement('button')
+            removeFromCartButton.textContent = 'Remove from cart'
+            // // Add To Cart Functionality
+            removeFromCartButton.addEventListener('click', async() => {
+                  const item = await axios.delete(`http://localhost:3001/api/cart/${myCart.data[i]._id}`)
+                  console.log(myCart.data[i]._id)                   
+            })
+
+            imageDiv.appendChild(imageElement)
+            modelDiv.appendChild(modelElement)
+            priceDiv.appendChild(priceElement)
+            quantityDiv.appendChild(quantityElement)
+            subtotalDiv.appendChild(subtotalElement)
+            newDiv.appendChild(imageDiv)
+            newDiv.appendChild(modelDiv)
+            newDiv.appendChild(priceDiv)
+            newDiv.appendChild(quantityDiv)
+            newDiv.appendChild(subtotalDiv)
+            newDiv.appendChild(removeFromCartButton)
+      }
+
+      let cartTotalDiv = document.createElement('div')
+      let cartTotalElement = document.createTextNode(`Total: ${total}`)
+      cartTotalDiv.appendChild(cartTotalElement)
+      cartDiv.appendChild(cartTotalDiv)
+      
 }
     
 
@@ -239,6 +291,7 @@ canon.addEventListener('click', async () => {
 cartButton.onclick = function() {
       modal.style.display = 'block'
       console.log('working')
+      cartInformation()
 }
 
 closeSpan.onclick = function() {
