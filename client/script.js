@@ -1,3 +1,4 @@
+// const { json } = require("express")
 
 const nikon = document.getElementById('nikon-button')
 const sony = document.getElementById('sony-button')
@@ -5,6 +6,9 @@ const canon = document.getElementById('canon-button')
 const cardContainer = document.getElementById('brandCardContainer')
 const featuresCardContainer = document.getElementById('featuresCardContainer')
 const brandInfo = document.querySelector('.brand-info')
+const modal = document.getElementById('cartModal')
+const cartButton = document.getElementById('cart-button')
+const closeSpan = document.getElementsByClassName('close')[0]
 
 const currentBrand = {}
 const currentModel = {}
@@ -142,3 +146,21 @@ canon.addEventListener('click', async () => {
 })
 
 
+
+
+
+//cart modal functions
+cartButton.onclick = function() {
+      modal.style.display = 'block'
+      console.log('working')
+}
+
+closeSpan.onclick = function() {
+      modal.style.display = 'none'
+}
+
+window.onclick = function(e) {
+      if (e.target == modal) {
+            modal.style.display = 'none'
+      }
+}
