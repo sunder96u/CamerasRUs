@@ -5,16 +5,15 @@ db.on('error', console.error.bind(console,'error:'))
 
 const main = async () => {
 
-    const canonOne = await Model.findById('6480c8795176d9d581e9418e')
-    const canonTwo = await Model.findById("6480c8795176d9d581e9418f")
-    const canonThree = await Model.findById("6480c8795176d9d581e94190")
-    const nikonOne = await Model.findById("6480c8795176d9d581e94191")
-    const nikonTwo = await Model.findById("6480c8795176d9d581e94192")
-    const nikonThree = await Model.findById("6480c8795176d9d581e94193")
-    const sonyOne = await Model.findById("6480c8795176d9d581e94194")
-    const sonyTwo = await Model.findById("6480c8795176d9d581e94195")
-    const sonyThree = await Model.findById("6480c8795176d9d581e94196")
-
+    const canonOne = await Model.findById('6481d2dde412d62afa561ead')
+    const canonTwo = await Model.findById("6481d2dde412d62afa561eae")
+    const canonThree = await Model.findById("6481d2dde412d62afa561eaf")
+    const nikonOne = await Model.findById("6481d2dde412d62afa561eb0")
+    const nikonTwo = await Model.findById("6481d2dde412d62afa561eb1")
+    const nikonThree = await Model.findById("6481d2dde412d62afa561eb2")
+    const sonyOne = await Model.findById("6481d2dde412d62afa561eb3")
+    const sonyTwo = await Model.findById("6481d2dde412d62afa561eb4")
+    const sonyThree = await Model.findById("6481d2dde412d62afa561eb5")
 
 
     const feature = [
