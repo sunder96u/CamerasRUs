@@ -1,5 +1,3 @@
-// const { json } = require("express")
-
 const nikon = document.getElementById('nikon-button')
 const sony = document.getElementById('sony-button')
 const canon = document.getElementById('canon-button')
@@ -20,19 +18,7 @@ const brandCards = async (brand) => {
       const card = document.createElement('div')
       card.classList.add('brandContainer')
       brandInfo.innerHTML = ""
-      // brand.forEach(product => {
-            
-      //       // Image 
-      //       const imageElement = document.createElement('img')
-      //       imageElement.src = ``
-      //       card.appendChild(imageElement)
-      //       // Brand Name
-      //       const brandNameElement = document.createElement('h3')
-      //       brandNameElement.textContent = `${currentBrand.data.brand}`
-      //       card.appendChild(brandNameElement)
-      //       // Brand Info
-      //       brandInfo.appendChild(card)
-      // })
+
       for (let j = 0; j < currentBrand.data.length; j++) {
             // Image 
             const imageElement = document.createElement('img')
@@ -40,7 +26,6 @@ const brandCards = async (brand) => {
             card.appendChild(imageElement)
             // Brand Name
             const brandNameElement = document.createElement('h3')
-            //brandNameElement.textContent = `${currentBrand.data[0].brand}`
             card.appendChild(brandNameElement)
             // Brand Info
             brandInfo.appendChild(card)
@@ -102,28 +87,52 @@ const featuresCards = async (feature) => {
       const newDiv = document.createElement('div')
             //Image
             const pic = document.createElement('img')
+            pic.classList.add('modelPic')
             pic.src = `${myCurrentModel.data.image}`
             // Model
-            const modelElement = document.createTextNode(`Model: ${featuresResponse.data.connectivity}`)
-            //modelElement.classList.add('modelName')
-            //card.appendChild(modelElement)
+            const modelElement = document.createTextNode(`Model: ${myCurrentModel.data.model}`)
+            
             // Price    
-            // const priceElement = document.createTextNode(`Price: $${currentModel.data[i].price}`)
-            // //card.appendChild(priceElement)
+            const priceElement = document.createTextNode(`Price: $${myCurrentModel.data.price}`)
+            
+            // Dimensions
+            const dimensionsElement = document.createTextNode(`Dimensions: ${featuresResponse.data.dimensions}`)
+
+            // Connectivity
+            const connectivityElement = document.createTextNode(`Connectivity: ${featuresResponse.data.connectivity}`)
+
+            // Shutterspeed 
+            const shutterSpeedElement = document.createTextNode(`Shutter Speed: ${featuresResponse.data.shutterSpeed}`)
+
+            // Sensor Type 
+            const sensorTypeElement = document.createTextNode(`Sensor Type: ${featuresResponse.data.sensorType}`)
+
+            // Resolution 
+            const resolutionElement = document.createTextNode(`Resolution: ${featuresResponse.data.resolution}`)
+
+            // Weight
+            const weightElement = document.createTextNode(`Weight: ${featuresResponse.data.weight}`)
+
             // // Add To Cart Button
-            // const addToCartButton = document.createElement('button')
-            // addToCartButton.textContent = 'Add to Cart'
+            const addToCartButton = document.createElement('button')
+            addToCartButton.textContent = 'Add to Cart'
             // // Add To Cart Functionality
-            // addToCartButton.addEventListener('click', async() => {
-            //       const item = await axios.post(`http://localhost:3001/api/cart/${currentModel.data[i]._id}`)
+            addToCartButton.addEventListener('click', async() => {
+                  const item = await axios.post(`http://localhost:3001/api/cart/${myCurrentModel.data._id}`)
                     
-            // })
+            })
             newDiv.appendChild(pic)
             newDiv.appendChild(modelElement)
-           // newDiv.appendChild(priceElement)
-           // newDiv.appendChild(addToCartButton)
-           card.appendChild(newDiv)
-           brandInfo.appendChild(card)
+            newDiv.appendChild(connectivityElement)
+            newDiv.appendChild(shutterSpeedElement)
+            newDiv.appendChild(sensorTypeElement)
+            newDiv.appendChild(resolutionElement)
+            newDiv.appendChild(dimensionsElement)
+            newDiv.appendChild(weightElement)
+            newDiv.appendChild(priceElement)
+            newDiv.appendChild(addToCartButton)
+            card.appendChild(newDiv)
+            brandInfo.appendChild(card)
 
       // feature.forEach(item => {
       //   // Card
